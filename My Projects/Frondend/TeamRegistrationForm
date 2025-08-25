@@ -1,0 +1,85 @@
+ 
+ <h1 style="text-align: center;margin-top: 40px;">TEAM REGISTRATION FORM</h1>
+ <center>
+<form id="teamform">
+    <table border="1">
+        <tr>
+            <td>Name</td><td><input type="text" id="name"placeholder="Enter your name" required></td>
+
+        </tr>
+        <tr>
+            <td> Age</td> <td><input type="number" id="age"placeholder="Enter your age" required></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+      <td><input type="radio"name="Gender"value="Male" required>Male<input type="radio"name="Gender" value="female" required>Female</td>
+            
+        </tr>
+        <tr>
+            <td>Course</td>
+            <td>
+                <select style="width:100%;" id="course">
+                    <option>HTML</option>
+                    <option>CSS</option>
+                    <option>Javascript</option>
+                </select>
+            </td>
+
+
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" id="email"placeholder="abc@gmail.com" required></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+            <input type="submit" style="background-color:aqua;">
+            </td>
+        </tr>
+            
+            
+    </table>
+  
+</form>
+<table border="1" id="teamtable">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Course</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+</table>
+</center>
+<script>
+    const form = document.getElementById("teamform");
+    const table = document.getElementById("teamtable");
+    form.addEventListener("submit",function(e){
+        e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const age = document.getElementById("age").value;
+    const gender = document.querySelector('input[name="Gender"]:checked').value;
+    const course = document.getElementById("course").value;
+    const email = document.getElementById("email").value;
+    const newrow = table.insertRow();
+    newrow.innerHTML = `
+     <td>${name}</td> 
+     <td>${age}</td>
+     <td>${gender}</td>
+     <td>${course}</td>
+     <td>${email}</td>
+     <td><button class="deletebtn" onclick="deleteRow(this)">delete</button></td> `;
+            
+        form.reset();
+    });
+        function deleteRow(button){
+            button.parentElement.parentElement.remove();
+        }
+      
+
+
+</script>
+
+ 
