@@ -1,0 +1,83 @@
+
+import java.util.*;
+public class ATM {
+    public static void main(String[]args){
+        Scanner scan = new Scanner(System.in);
+        int pin = 2597;
+        
+        int maxAtempts =3;
+        double balance = 2000.00;
+        int choice;
+        System.out.println("Welcome to the ATM Machine");
+       
+         do{
+            System.out.println("\n Please choose an option");
+            System.out.println("1.check Balance");
+            System.out.println("2.Deposit Money");
+            System.out.println("3.withdraw Money");
+            System.out.println("4 Exit");
+            System.out.println("\n Please Enter your Choice:");
+            choice = scan.nextInt();
+            if(choice==1|| choice==2|| choice==3){
+                boolean pinOk = false;
+                int attempts =0;
+                while(attempts<maxAtempts){
+                    System.out.println("Enter Your PIN: ");
+                    int enterPin = scan.nextInt();
+                    if(enterPin==pin){
+                        pinOk = true;
+                        break;
+                    }
+                    else{
+                        System.out.println("Incorrect PIN.Try Again");
+                        attempts++;
+                    }
+                }
+                if(!pinOk){
+                    System.out.println("Too many incorrect attempts.Your card is blocked.Please contact the bank");
+                    scan.close();
+                    return;
+                }
+            }
+            switch(choice){
+                case 1:
+                    System.out.println("Your current balance is:$"+ balance);
+                    break;
+
+                 case 2:
+                    System.out.println("Enter amount $:");
+                    double deposit = scan.nextDouble();
+                    if(deposit>0){
+                        balance += deposit;
+                        System.out.println("Your deposit amount is:"+deposit);
+                    }
+                    else{
+                        System.out.println("Invalid deposit amount");
+                    }
+                     break;
+                case 3:
+                    System.out.println("Enter amount to withdraw:");
+                    double withdraw = scan.nextDouble();
+                    if(withdraw>0 && withdraw<=balance){
+                        balance -= withdraw;
+                        System.out.println("Your withdraw $:"+withdraw);
+                    }
+                    else if(withdraw>balance){
+                        System.out.println("Insufficient balance!");
+                    }
+                    else{
+                        System.out.println("Invalid withdrawal amount");
+                    }
+                    break;
+                    default:
+                        System.out.println("Invalid choice.Try Again");
+            }
+
+            }while(choice!=4);
+                scan.close();
+            }
+
+}
+
+         
+    
